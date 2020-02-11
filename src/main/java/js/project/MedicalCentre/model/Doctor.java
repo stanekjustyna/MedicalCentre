@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.pl.PESEL;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -41,7 +42,12 @@ public class Doctor {
 
     @NotBlank(message = "Medical licence cannot be blank.")
     @Pattern(regexp = "^\\d{7}$", message = "Medical licence number should contain 7 digits.")
+    @Column(unique = true)
     private String medical_licence;
+
+    @ElementCollection
+    @Enumerated(EnumType.STRING)
+    private List<Specialization> specializations;
 
     public Doctor() {
     }
