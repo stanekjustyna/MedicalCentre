@@ -1,5 +1,6 @@
 package js.project.MedicalCentre.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.validator.constraints.pl.PESEL;
 
@@ -12,35 +13,35 @@ import java.util.List;
 public class Doctor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true)
-    @NotBlank(message = "Username cannot be blank.")
+    @NotBlank(message = "Username must be provided.")
     @Size(min = 8, message = "Username should contain at least 8 characters")
     private String username;
 
-    @NotNull(message = "AcademicTitle cannot be null.")
+    @NotNull(message = "AcademicTitle must be provided.")
     private AcademicTitle academicTitle;
 
-    @NotBlank(message = "First name cannot be blank.")
+    @NotBlank(message = "First name must be provided.")
     private String firstName;
 
-    @NotBlank(message = "Last name cannot be blank.")
+    @NotBlank(message = "Last name must be provided..")
     private String lastName;
 
     @Pattern(regexp = "^?([0-9]{3})?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{3})$", message = "Wrong mobile phone number format.")
     private String mobile;
 
     @Email
-    @NotBlank(message = "Email cannot be blank.")
+    @NotBlank(message = "Email must be provided.")
     private String email;
 
     @PESEL
-    @NotBlank(message = "PESEL cannot be blank.")
+    @NotBlank(message = "PESEL must be provided.")
     private String pesel;
 
-    @NotBlank(message = "Medical licence cannot be blank.")
+    @NotBlank(message = "Medical licence must be provided.")
     @Pattern(regexp = "^\\d{7}$", message = "Medical licence number should contain 7 digits.")
     @Column(unique = true)
     private String medical_licence;
@@ -48,6 +49,10 @@ public class Doctor {
     @ElementCollection
     @Enumerated(EnumType.STRING)
     private List<Specialization> specializations;
+
+    @OneToMany(mappedBy="doctor")
+    @JsonIgnore
+    private List<Localization> localizations;
 
     public Doctor() {
     }

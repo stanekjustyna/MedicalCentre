@@ -2,8 +2,10 @@ package js.project.MedicalCentre.configuration;
 
 import js.project.MedicalCentre.model.AcademicTitle;
 import js.project.MedicalCentre.model.Doctor;
+import js.project.MedicalCentre.model.Localization;
 import js.project.MedicalCentre.model.Specialization;
 import js.project.MedicalCentre.repository.DoctorRepository;
+import js.project.MedicalCentre.repository.LocalizationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,14 +13,17 @@ import javax.annotation.PostConstruct;
 import java.util.Arrays;
 
 @Configuration
-public class SampleDoctorInitializer {
+public class SampleDataInitializer {
 
     private DoctorRepository doctorRepository;
+    private LocalizationRepository localizationRepository;
 
     @Autowired
-    public SampleDoctorInitializer(DoctorRepository doctorRepository) {
+    public SampleDataInitializer(DoctorRepository doctorRepository, LocalizationRepository localizationRepository) {
         this.doctorRepository = doctorRepository;
+        this.localizationRepository = localizationRepository;
     }
+
 
     @PostConstruct
     public void init(){
@@ -49,6 +54,14 @@ public class SampleDoctorInitializer {
         doctorRepository.save(d3);
         doctorRepository.save(d4);
         doctorRepository.save(d5);
+
+        Localization l1 = new Localization("Mazovian", "Warsaw", "Al. Jerozolimskie",
+                "14A", null, null, null );
+
+        l1.setDoctor(d1);
+
+        localizationRepository.save(l1);
+
 
     }
 }
