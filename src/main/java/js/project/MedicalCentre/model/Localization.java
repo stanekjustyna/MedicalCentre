@@ -24,7 +24,7 @@ public class Localization {
 
     @NotBlank(message = "House number must be provided.")
     private String house_number;
-    
+
     private String flat_number;
 
     private String office_number;

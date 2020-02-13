@@ -25,4 +25,7 @@ public class SearchDoctorService {
         return doctorRepository.findAll();
     }
 
+    public List<Doctor> findByLastName(String lastname){
+        return doctorRepository.findByLastName(lastname);
+    }
 }
