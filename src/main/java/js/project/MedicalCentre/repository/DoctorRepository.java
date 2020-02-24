@@ -1,6 +1,7 @@
 package js.project.MedicalCentre.repository;
 
 import js.project.MedicalCentre.model.Doctor;
+import js.project.MedicalCentre.model.Specialization;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,4 +12,5 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 
     List<Doctor> findAll();
     List<Doctor> findByLastName(String lastname);
+    List<Doctor> findBySpecializations(Specialization specialization);
 }

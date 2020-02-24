@@ -1,6 +1,7 @@
 package js.project.MedicalCentre.service;
 
 import js.project.MedicalCentre.model.Doctor;
+import js.project.MedicalCentre.model.Specialization;
 import js.project.MedicalCentre.repository.DoctorRepository;
 import js.project.MedicalCentre.repository.LocalizationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,9 @@ public class SearchDoctorService {
 
     public List<Doctor> findByLastName(String lastname){
         return doctorRepository.findByLastName(lastname);
+    }
+
+    public List<Doctor> findBySpecialization(Specialization specialization){
+        return doctorRepository.findBySpecializations(specialization);
     }
 }

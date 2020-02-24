@@ -28,6 +28,19 @@ public class SampleDataInitializer {
     @PostConstruct
     public void init(){
 
+        Localization l1 = new Localization("Mazovian", "Warsaw", "Al. Jerozolimskie",
+                "14A", "34A", "3", null );
+
+        Localization l2 = new Localization("Mazovian", "Warsaw", "Al. Niepodległosci",
+                "69", "58", "4", null );
+
+        Localization l3 = new Localization("Mazovian", "Cracow", "Krakowska",
+                "40", "58", "6", null );
+
+        localizationRepository.save(l1);
+        localizationRepository.save(l2);
+        localizationRepository.save(l3);
+
         Doctor d1 = new Doctor("jankowalski", AcademicTitle.DR, "Jan", "Kowalski",
                 "123 456 789", "jankowalski@gmail.com", "70010173159", "1234567");
 
@@ -47,21 +60,18 @@ public class SampleDataInitializer {
         d2.setSpecializations(Arrays.asList(Specialization.INTERNIST));
         d3.setSpecializations(Arrays.asList(Specialization.ONCOLOGIST));
         d4.setSpecializations(Arrays.asList(Specialization.DERMATOLOGIST));
-        d5.setSpecializations(Arrays.asList(Specialization.INTERNIST));
+        d5.setSpecializations(Arrays.asList(Specialization.CARDIOLOGIST));
+
+        d1.setLocalizations(Arrays.asList(l1));
+        d2.setLocalizations(Arrays.asList(l2));
+        d3.setLocalizations(Arrays.asList(l3));
+        d4.setLocalizations(Arrays.asList(l3, l1));
 
         doctorRepository.save(d1);
         doctorRepository.save(d2);
         doctorRepository.save(d3);
         doctorRepository.save(d4);
         doctorRepository.save(d5);
-
-        Localization l1 = new Localization("Mazovian", "Warsaw", "Al. Jerozolimskie",
-                "14A", null, null, null );
-
-        l1.setDoctor(d1);
-
-        localizationRepository.save(l1);
-
 
     }
 }

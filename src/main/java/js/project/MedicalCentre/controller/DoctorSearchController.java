@@ -1,6 +1,7 @@
 package js.project.MedicalCentre.controller;
 
 import js.project.MedicalCentre.model.Doctor;
+import js.project.MedicalCentre.model.Specialization;
 import js.project.MedicalCentre.service.SearchDoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,9 +25,15 @@ public class DoctorSearchController {
         return searchDoctorService.findAll();
     }
 
-    @GetMapping(value = "/doctors/{lastname}")
+    @GetMapping(value = "/doctors/surname/{lastname}")
     public List<Doctor> getDoctorsBySurname(@PathVariable String lastname){
         return searchDoctorService.findByLastName(lastname);
     }
+
+    @GetMapping(value = "/doctors/specialization/{specialization}")
+    public List<Doctor> getDoctorsBySpecialization(@PathVariable Specialization specialization){
+        return searchDoctorService.findBySpecialization(specialization);
+    }
+
 
 }

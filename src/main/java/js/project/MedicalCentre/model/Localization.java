@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Entity
 @Data
@@ -31,9 +32,8 @@ public class Localization {
 
     private String guidance_notes;
 
-    @ManyToOne
-    @JoinColumn(name="doctor_id")
-    private Doctor doctor;
+    @ManyToMany(mappedBy = "localizations")
+    private List<Doctor> doctors;
 
     public Localization() {
     }

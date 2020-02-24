@@ -50,7 +50,12 @@ public class Doctor {
     @Enumerated(EnumType.STRING)
     private List<Specialization> specializations;
 
-    @OneToMany(mappedBy="doctor")
+    @ManyToMany
+    @JoinTable(
+            name = "doctor_localization",
+            joinColumns = @JoinColumn(name = "doctor_id"),
+            inverseJoinColumns = @JoinColumn(name = "localization_id")
+    )
     @JsonIgnore
     private List<Localization> localizations;
 
