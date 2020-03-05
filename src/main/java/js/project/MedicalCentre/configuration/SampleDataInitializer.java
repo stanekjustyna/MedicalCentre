@@ -24,7 +24,6 @@ public class SampleDataInitializer {
         this.localizationRepository = localizationRepository;
     }
 
-
     @PostConstruct
     public void init(){
 
