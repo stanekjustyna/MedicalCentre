@@ -12,6 +12,10 @@ import java.util.List;
 @Repository
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 
-    @Query(value="SELECT d FROM Doctor d WHERE (:lastName like '' or d.lastName = :lastName) and (:specializations is null or :specializations in elements(d.specializations))")
-    List<Doctor> findDoctorByLastNameAndSpecialization(@Param("lastName") String lastName, @Param("specializations") Specialization specialization);
+    @Query(value="SELECT d FROM Doctor d JOIN d.localizations dl WHERE (:lastName like '' or d.lastName = :lastName) " +
+            "and (:specializations is null or :specializations in elements(d.specializations))" +
+            "and (:city like '' or dl.id = :city)")
+    List<Doctor> findDoctorByLastNameAndSpecializationAndCity(@Param("lastName") String lastName,
+                                                              @Param("specializations") Specialization specialization,
+                                                              @Param("city") String city);
 }
