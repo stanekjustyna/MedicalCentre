@@ -1,39 +1,30 @@
 package js.project.MedicalCentre.controller;
 
-import js.project.MedicalCentre.model.Doctor;
-import js.project.MedicalCentre.model.Specialization;
-import js.project.MedicalCentre.service.SearchDoctorService;
+import js.project.MedicalCentre.service.FindDoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@RestController
+@Controller
+@RequestMapping("/search")
 public class DoctorSearchController {
 
-    private SearchDoctorService searchDoctorService;
+    private FindDoctorService findDoctorService;
 
     @Autowired
-    public DoctorSearchController(SearchDoctorService searchDoctorService) {
-        this.searchDoctorService = searchDoctorService;
+    public DoctorSearchController(FindDoctorService findDoctorService) {
+        this.findDoctorService = findDoctorService;
     }
 
-    @GetMapping(value = "/doctors")
-    public List<Doctor> getAllDoctors(){
-        return searchDoctorService.findAll();
+    @GetMapping
+    @PostMapping
+    public String searchForDoctors(@RequestParam String surname, @RequestParam String specialization,
+                                 @RequestParam String city, Model model){
+
+        model.addAttribute("doctorsList",
+        findDoctorService.findDoctorBySurnameAndSpecializationAndCity(surname, specialization, city));
+
+        return "searchResults";
     }
-
-    @GetMapping(value = "/doctors/surname/{lastname}")
-    public List<Doctor> getDoctorsBySurname(@PathVariable String lastname){
-        return searchDoctorService.findByLastName(lastname);
-    }
-
-    @GetMapping(value = "/doctors/specialization/{specialization}")
-    public List<Doctor> getDoctorsBySpecialization(@PathVariable Specialization specialization){
-        return searchDoctorService.findBySpecialization(specialization);
-    }
-
-
 }

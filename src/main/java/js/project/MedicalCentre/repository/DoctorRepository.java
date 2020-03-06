@@ -3,6 +3,8 @@ package js.project.MedicalCentre.repository;
 import js.project.MedicalCentre.model.Doctor;
 import js.project.MedicalCentre.model.Specialization;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,7 +12,6 @@ import java.util.List;
 @Repository
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 
-    List<Doctor> findAll();
-    List<Doctor> findByLastName(String lastname);
-    List<Doctor> findBySpecializations(Specialization specialization);
+    @Query(value="SELECT d FROM Doctor d WHERE (:lastName like '' or d.lastName = :lastName) and (:specializations is null or :specializations in elements(d.specializations))")
+    List<Doctor> findDoctorByLastNameAndSpecialization(@Param("lastName") String lastName, @Param("specializations") Specialization specialization);
 }

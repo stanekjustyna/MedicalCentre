@@ -46,21 +46,14 @@
 
         <div id="search">
 
-            <h1>Find a doctor and make an appointment</h1>
+            <h1>Doctors that meet your search parameters: </h1>
 
             <div id="engine">
 
-                <form action="/search"/>
-
-                <input type="text" id="Surname" name="surname" placeholder="Surname">
-
-                <input type="text" id="Specialization" name="specialization" placeholder="Specialization">
-
-                <input type="text" id="City" name="city" placeholder="City">
-
-                <input type="submit" value="Search">
-
-                </form>
+                    <div th:each="doctor : ${doctorsList}">
+                        <input name="size" type="radio" th:value="${doctor.id}"/>
+                        <span th:text="${doctor.email}">Email</span><br/>
+                    </div>
 
             </div>
 

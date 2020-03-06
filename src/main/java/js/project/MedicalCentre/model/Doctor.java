@@ -1,7 +1,7 @@
 package js.project.MedicalCentre.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.pl.PESEL;
 
 import javax.persistence.*;
@@ -10,6 +10,7 @@ import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Doctor {
 
     @Id
@@ -51,16 +52,7 @@ public class Doctor {
     private List<Specialization> specializations;
 
     @ManyToMany
-    @JoinTable(
-            name = "doctor_localization",
-            joinColumns = @JoinColumn(name = "doctor_id"),
-            inverseJoinColumns = @JoinColumn(name = "localization_id")
-    )
-    @JsonIgnore
     private List<Localization> localizations;
-
-    public Doctor() {
-    }
 
     public Doctor(String username, AcademicTitle academicTitle, String firstName, String lastName, String mobile,
                   String email, String pesel, String medical_licence) {
