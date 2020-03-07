@@ -50,6 +50,10 @@
 
             <div id="engine">
 
+                    <div th:if="${warning != null}">
+                        <span class="warning" th:text="${warning}">WARNING</span>
+                    </div>
+
                     <div th:each="doctor : ${doctorsList}">
                         <input name="size" type="radio" th:value="${doctor.id}"/>
                         <span th:text="${doctor.email}">Email</span><br/>

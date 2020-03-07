@@ -14,7 +14,7 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 
     @Query(value="SELECT d FROM Doctor d JOIN d.localizations dl WHERE (:lastName like '' or d.lastName = :lastName) " +
             "and (:specializations is null or :specializations in elements(d.specializations))" +
-            "and (:city like '' or dl.id = :city)")
+            "and (:city like '' or dl.city = :city)")
     List<Doctor> findDoctorByLastNameAndSpecializationAndCity(@Param("lastName") String lastName,
                                                               @Param("specializations") Specialization specialization,
                                                               @Param("city") String city);

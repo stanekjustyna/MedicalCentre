@@ -86,6 +86,6 @@ public enum Specialization {
 
     TRANSPLANT_SURGEON,
 
-    UROLOGIST
+    UROLOGIST;
 
     }
