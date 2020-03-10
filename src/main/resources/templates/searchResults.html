@@ -13,7 +13,7 @@
 
     <meta name="keywords" content="doctors, patients, appointments, opinions, questions, healthcare, medicine"/>
 
-    <link rel="stylesheet" href="style.css" type="text/css"/>
+    <link rel="stylesheet" href="styleResults.css" type="text/css"/>
     <link rel="stylesheet" href="css/fontello.css" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Lato&display=swap&subset=latin-ext" rel="stylesheet">
 
@@ -21,14 +21,23 @@
 
 <body>
 
-<div id="container">
-
-    <div id="main">
-
         <header>
 
             <nav id="logo">MedicalCentre</nav>
-            <nav>Ask a doctor</nav>
+
+            <nav id="form">
+                <form action="/search"/>
+
+                <input type="text" id="Surname" name="surname" placeholder="Surname">
+
+                <input type="text" id="Specialization" name="specialization" placeholder="Specialization">
+
+                <input type="text" id="City" name="city" placeholder="City">
+
+                <button type="submit" id="searchButton"><i class="icon-search"></i></button>
+
+                </form>
+            </nav>
 
             <nav class="dropdown">
                 <button class="dropbtn">Register</button>
@@ -44,15 +53,23 @@
 
         </header>
 
+        <div id="main">
+
         <div id="search">
 
-            <h1>Doctors that meet your search parameters: </h1>
+            <div th:if="${not #lists.isEmpty(doctorsList)}">
+                <h1>Recommended doctors: </h1>
+            </div>
+
+            <div th:if="${#lists.isEmpty(doctorsList)}">
+                <h1>No results found &#9785</h1>
+            </div>
+
+            <div th:if="${warning != null}">
+                <span class="warning" th:text="${warning}">WARNING</span>
+            </div>
 
             <div id="engine">
-
-                    <div th:if="${warning != null}">
-                        <span class="warning" th:text="${warning}">WARNING</span>
-                    </div>
 
                     <div th:each="doctor : ${doctorsList}">
                         <input name="size" type="radio" th:value="${doctor.id}"/>
@@ -60,42 +77,6 @@
                     </div>
 
             </div>
-
-        </div>
-
-    </div>
-
-    <div id="path">
-
-        <div class="path_position">
-
-            <i class="icon-search"></i>
-            <br/>
-            Find a specialist
-
-        </div>
-
-        <div class="path_position">
-
-            <i class="icon-calendar-check-o"></i>
-            <br/>
-            Make an appointment
-
-        </div>
-
-        <div class="path_position">
-
-            <i class="icon-user-md"></i>
-            <br/>
-            Visit a doctor
-
-        </div>
-
-        <div class="path_position">
-
-            <i class="icon-thumbs-up-alt"></i>
-            <br/>
-            Give an opinion
 
         </div>
 
@@ -155,8 +136,6 @@
         www.medicalcentre.com &copy; 2020 - Find a doctor and make an appointment
 
     </footer>
-
-</div>
 
 </body>
 </html>
