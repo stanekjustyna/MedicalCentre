@@ -10,6 +10,7 @@ body
 	width: 100%;
 	margin-left: auto;
 	margin-right:auto;
+	box-sizing: border-box;
 
 }
 
@@ -17,24 +18,23 @@ header
 {
 	background-color: #1ABC9C;
 	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-content: center;
 }
 
 nav
 {
-	width: 7%;
-	display: inline-block;
-	height: 100px;
+	width: 10%;
+	padding: 12px 24px;
+    margin: 10px 0;
 }
 
 #logo
 {
-	width: 21%;
 	font-family: 'Josefin Sans', sans-serif;
-	font-size: 30px;
+	font-size: 20px;
 	text-align: left;
-	padding: 12px 24px;
-    margin: 10px 0;
-
 }
 
 #form
@@ -52,12 +52,17 @@ nav
 	font-size: 15px;
 }
 
+.dropbtn:focus
+{
+    outline:none;
+}
+
 .dropdown-content
 {
   display: none;
   position: absolute;
   background-color: #D5DBDB;
-  min-width: 120px;
+  min-width: 10%;
   z-index: 1;
 }
 
@@ -94,7 +99,7 @@ input[type=text]
   width: 25%;
   background-color: #0f705d;
   padding: 12px 24px;
-  margin: 10px 0;
+  margin: 0;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -111,39 +116,45 @@ input[type=text]
   background-color: #0f705d;
   color: #D5DBDB;;
   font-size: 100%;
-  padding: 12px 24px;
-  margin: 10px 0;
+  padding: 12px 4px;
+  margin: 0;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
-#searchButton:hover {
-  background-color: #062d25;
+#searchButton:focus, input[type=text]:focus
+{
+    outline:none;
+    border: 2px solid #a6a6a6;
 }
 
+#searchButton:hover {
+  background-color: #1ABC9C;
+}
 
 #contact
 {
 	color: #707B7C;
+	display: flex;
+	align-content: center;
 }
 
 #address
 {
 	width: 20%;
-	font-size: 15px;
+	font-size: 14px;
 }
 
  .logo
  {
 	font-family: 'Josefin Sans', sans-serif;
-	font-size: 25px;
+	font-size: 20px;
  }
 
  .social
 {
-	width: 15%;
-	display: inline-block;
+	width: 16%;
 	font-size: 50px;
 	padding: 10px;
 
@@ -160,4 +171,4 @@ footer
 	color: #AAB7B8;
 	padding: 10px;
 
-}
+}}

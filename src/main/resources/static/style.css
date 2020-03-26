@@ -21,12 +21,17 @@ body
 
 }
 
+header
+{
+    display: flex;
+}
+
 nav
 {
 	width: 15%;
-	display: inline-block;
 	height: 100px;
 }
+
 
 .dropbtn
 {
@@ -38,12 +43,17 @@ nav
 	font-size: 15px;
 }
 
+.dropbtn:focus
+{
+    outline:none;
+}
+
 .dropdown-content
 {
   display: none;
   position: absolute;
   background-color: #D5DBDB;
-  min-width: 120px;
+  min-width: 15%;
   z-index: 1;
 }
 
@@ -110,6 +120,12 @@ input[type=submit]
   cursor: pointer;
 }
 
+input[type=submit]:focus, input[type=text]:focus
+{
+    outline:none;
+    border: 2px solid #a6a6a6;
+}
+
 input[type=submit]:hover {
   background-color: #5499C7;
 }
@@ -117,6 +133,7 @@ input[type=submit]:hover {
 #path
 {
 	margin: auto;
+	display: flex;
 }
 
 .path_position
@@ -124,7 +141,6 @@ input[type=submit]:hover {
 	width: 20.7%;
 	margin: 1% 1%;
 	padding: 1%;
-	display: inline-block;
 	background-color: #5DADE2;
 	border-radius: 4px;
 }
@@ -137,24 +153,25 @@ input[type=submit]:hover {
 #contact
 {
 	color: #707B7C;
+	display: flex;
+	align-content: center;
 }
 
 #address
 {
 	width: 20%;
-	font-size: 15px;
+	font-size: 14px;
 }
 
  .logo
  {
 	font-family: 'Josefin Sans', sans-serif;
-	font-size: 25px;
+	font-size: 20px;
  }
 
  .social
 {
-	width: 15%;
-	display: inline-block;
+	width: 16%;
 	font-size: 50px;
 	padding: 10px;
 
